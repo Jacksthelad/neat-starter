@@ -3,38 +3,68 @@ layout: blog
 title: Blog
 tags: page
 ---
+{% set postslist = collections.post | reverse %}
 
-<section class="mt-15 max-w-7xl mx-auto">
+{% if postslist.length > 0 %}
+    {% set latest_post = postslist[0] %}
+    <section class="mt-15 max-w-7xl mx-auto mb-12">
+        <div class="flex flex-wrap lg:flex-nowrap">
+            {% if latest_post.data.featured_image %}
+                <div class="flex-shrink-0">
+                    <img src="{{ latest_post.data.featured_image | url }}" alt="{{ latest_post.data.title }}" class="border-4 border-text w-full lg:w-1/2 h-auto mb-4 lg:mb-0 lg:mr-8">
+                </div>
+            {% endif %}
+            <div class="flex-grow">
+                <a href="{{ latest_post.url | url }}">
+                    <h2 class="font-bold text-5xl text-text mb-2">
+                        {{ latest_post.data.title | default('Untitled') }}
+                    </h2>
+                    {% if latest_post.data.description %}
+                        <p class="text-lg text-text mb-3">
+                            {{ latest_post.data.description }}
+                        </p>
+                    {% endif %}
+                    <time>
+                        <h5 class="text-text">
+                            by {{ latest_post.data.author }}
+                        </h5>
+                    </time>
+                </a>
+            </div>
+        </div>
+    </section>
+{% endif %}
+
+<section class="max-w-7xl mx-auto">
     <div class="grid grid-cols-1 sm:grid-cols-2 xxl:grid-cols-3 gap-6">
-        {% set postslist = collections.post %}
-
-        {% for post in postslist | reverse %}
-            <article class="px-10 py-6 border-4 rounded-tl-3xl rounded-tr-4xl rounded-bl-4xl rounded-br-3xl border-text">
-                {% if post.data.featured_image %}
-                    <img src="{{ post.data.featured_image | url }}" alt="{{ post.data.title }}" class="w-full h-auto mb-4">
-                {% endif %}
+        {% for post in postslist %}
+            {% if post.url != latest_post.url %}
+                <article class="bg-white px-10 py-8 border-4 border-text rounded-tl-3xl rounded-tr-4xl rounded-bl-4xl rounded-br-3xl">
                 <a href="{{ post.url | url }}">
-                    <h2 class="font-bold text-3xl text-text mb-2">
-                        {% if post.data.title %}
-                            {{ post.data.title }}
-                        {% else %}
-                            Untitled
-                        {% endif %}
-                </h2>
-                {% if post.data.description %}
-                    <p class="text-lg text-gray-500 mb-3">
-                        {{ post.data.description }}
-                    </p>
-                {% endif %}
-            </a>
-            <p class="text-base leading-6 text-gray-500 mb-3">
-                <time>
-                    <h5>
-                        {{ post.data.author }}
-                    </h5>
-                </time>
-            </p>
-            </article>
+                    {% if post.data.featured_image %}
+                        <img src="{{ post.data.featured_image | url }}" alt="{{ post.data.title }}" class="border-4 border-text w-full h-auto mb-4">
+                    {% endif %}
+                        <h2 class="font-bold text-5xl text-text mb-2">
+                            {% if post.data.title %}
+                                {{ post.data.title }}
+                            {% else %}
+                                Untitled
+                            {% endif %}
+                    </h2>
+                    {% if post.data.description %}
+                        <p class="text-lg text-text mb-3">
+                            {{ post.data.description }}
+                        </p>
+                    {% endif %}
+                
+                    <time>
+                        <h5 class="text-text">
+                            by {{ post.data.author }}
+                        </h5>
+                    </time>
+                </a>
+                </article>
+            {% endif %}
         {% endfor %}
     </div>
 </section>

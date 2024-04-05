@@ -1,12 +1,12 @@
-<footer class="text-center p-8">  
+<footer class="text-center p-8 mt-8 bg-primary">  
     <div class="mb-6">
-      <img src="/static/img/the-slowworms_logo.png" alt="logo image" class="mx-auto w-48 h-auto">
+      <img src="/static/img/the-slowworms_logotype.png" alt="logo image" class="mx-auto w-48 h-auto">
     </div>
   
     <nav class="mb-6 font-bold">
       {% for item in collections.page %}
       <a href="{{ item.url }}"
-         class="{% if item.url == page.url %}text-blue-500{% else %}hover:text-blue-500{% endif %} mx-2"
+         class="{% if item.url == page.url %}text-blue-500{% else %}hover:text-blue-500 bg-text text-white{% endif %} mx-2"
          aria-current="{% if item.url == page.url %}page{% endif %}">
         {{ item.data.title }}
       </a>
@@ -21,8 +21,8 @@
         <i class="fab fa-youtube fa-xl"></i>
       </a>
     </div>
-    <div class="bottom-0 text-center w-full py-4">
-        <small class="text-gray-500">Copyright ©
+    <div class="bottom-0 text-center w-full pt-4">
+        <small class="text-text">Copyright ©
             {{settings.name}}
             2024. Created by
             <a href="{{settings.url}}" target="_blank" class="underline">{{settings.author}}</a>

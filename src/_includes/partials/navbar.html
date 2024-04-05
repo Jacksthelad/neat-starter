@@ -1,9 +1,9 @@
-<header class="bg-background text-secondary sm:border-b-4 border-none sm:border-text sm:border-solid py-4 sm:mb-32 flex flex-col items-center sm:flex-row justify-between relative">
+<header class="bg-background sm:border-b-4 border-none sm:border-text sm:border-solid sm:mb-32 flex flex-col items-center sm:flex-row justify-between relative">
     <nav class="w-full sm:w-5/12 flex justify-around text-lg font-bold drop-shadow-strong border-b-4 sm:border-none border-text border-solid">
         {% if navigation.items %}
             {% for item in navigation.items %}
                 <a href="{{ item.url }}"
-                class="hover:text-sky-400">{{ item.text }}</a>
+                class="w-1/2 text-2xl text-center text-text hover:bg-primary py-3">{{ item.text }}</a>
             {% endfor %}
         {% endif %}
     </nav>
