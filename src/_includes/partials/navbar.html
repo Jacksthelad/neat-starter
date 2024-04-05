@@ -1,33 +1,20 @@
-<div class="{{ 'lg:fixed' if path == 'home' }} w-full">
-    <nav class="flex items-center justify-center lg:justify-between flex-wrap p-6 lg:px-0 container mx-auto" x-data="{ isOpen: false }" @keydown.escape="isOpen = false"  @click.away="isOpen = false">
-        <!--Logo etc-->
-        <div class="flex items-center">
-            <a href="/" class="text-indigo-500 font-bold text-lg">
-                Logo</a>
-        </div>
-
-        <!--Toggle button (hidden on large screens)-->
-        <button @click="isOpen = !isOpen" type="button" class="ml-auto block lg:hidden px-2 text-primary-500 hover:text-primary-500 focus:outline-none focus:text-primary-500" :class="{ 'transition transform-180': isOpen }" aria-label="Menu">
-            <svg class="h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
-                <path x-show="isOpen" fill-rule="evenodd" clip-rule="evenodd" d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"/>
-                <path x-show="!isOpen" fill-rule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
-            </svg>
-        </button>
-
-        <!--Menu-->
-        <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto text-center " :class="{ 'block shadow-3xl': isOpen, 'hidden': !isOpen }" x-show.transition="true">
-
-            {% if navigation.items %}
-
-                <ul class="pt-6 lg:pt-0 list-reset lg:flex justify-end flex-1 items-center">
-                    {% for item in navigation.items %}
-                        <li class="nav__item mr-3">
-                            <a @click="isOpen = false" class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 py-2 px-4" href="{{ item.url }}">{{ item.text }}</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-
-            {% endif %}
-        </div>
+<header class="bg-background text-secondary sm:border-b-4 border-none sm:border-text sm:border-solid py-4 sm:mb-32 flex flex-col items-center sm:flex-row justify-between relative">
+    <nav class="w-full sm:w-5/12 flex justify-around text-lg font-bold drop-shadow-strong border-b-4 sm:border-none border-text border-solid">
+        {% if navigation.items %}
+            {% for item in navigation.items %}
+                <a href="{{ item.url }}"
+                class="hover:text-sky-400">{{ item.text }}</a>
+            {% endfor %}
+        {% endif %}
     </nav>
-</div>
+
+    <!-- Adjust the logo's positioning -->
+    <div class="bg-background w-1/6 lg:w-1/12 block sm:absolute sm:left-1/2 sm:transform sm:-translate-x-1/2 sm:top-0 z-10 max-w-40">
+        <a href="/">
+            <img src="/static/img/the-slowworms_logo.png" alt="logo image" style="width: 100%; height: auto;">
+        </a>
+    </div>
+    
+    <!-- Placeholder for future content or balance -->
+    <div class="w-5/12"></div>
+</header>

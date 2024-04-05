@@ -1,9 +1,32 @@
-<footer class="{{ 'fixed' if path == 'home' }} bottom-0 text-center w-full py-4">
-    <small class="text-gray-500">Copyright ©
-        {{settings.name}}
-        2020. Made with ❤ by
-        <a href="{{settings.url}}" target="_blank" class="underline">{{settings.author}}</a>
-        •
-        <a href="https://github.com/surjithctly/neat-starter" class="underline" target="_blank" rel="noopener">View on Github</a>
-    </small>
-</footer>
+<footer class="text-center p-8">  
+    <div class="mb-6">
+      <img src="/static/img/the-slowworms_logo.png" alt="logo image" class="mx-auto w-48 h-auto">
+    </div>
+  
+    <nav class="mb-6 font-bold">
+      {% for item in collections.page %}
+      <a href="{{ item.url }}"
+         class="{% if item.url == page.url %}text-blue-500{% else %}hover:text-blue-500{% endif %} mx-2"
+         aria-current="{% if item.url == page.url %}page{% endif %}">
+        {{ item.data.title }}
+      </a>
+      {% endfor %}
+    </nav>
+    
+    <div class="space-x-4">
+      <a href="https://instagram.com/yourusername" class="hover:text-blue-500">
+        <i class="fab fa-instagram fa-xl"></i>
+      </a>
+      <a href="https://youtube.com/yourchannel" class="hover:text-blue-500">
+        <i class="fab fa-youtube fa-xl"></i>
+      </a>
+    </div>
+    <div class="bottom-0 text-center w-full py-4">
+        <small class="text-gray-500">Copyright ©
+            {{settings.name}}
+            2024. Created by
+            <a href="{{settings.url}}" target="_blank" class="underline">{{settings.author}}</a>
+        </small>
+    </div>
+  </footer>
+  
