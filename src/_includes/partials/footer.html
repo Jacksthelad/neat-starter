@@ -6,10 +6,9 @@
     <nav class="mb-6 font-bold">
       {% for item in collections.page %}
       <a href="{{ item.url }}"
-         class="{% if item.url == page.url %}text-blue-500{% else %}hover:text-blue-500 bg-text text-white{% endif %} mx-2"
+         class="{% if item.url == page.url %}{% else %}{% endif %} border-2 border-text rounded-md bg-white px-2 py-1 mx-2 transform transition-all duration-50 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-3xl"
          aria-current="{% if item.url == page.url %}page{% endif %}">
-        {{ item.data.title }}
-      </a>
+        {{ item.data.title }}</a>
       {% endfor %}
     </nav>
     

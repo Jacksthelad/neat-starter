@@ -3,19 +3,26 @@ layout: default
 prism: true
 ---
 
-<div class="container max-w-4xl mt-6  px-6">
-    <div class="pb-5 mb-5 border-b border-gray-100">
-        <h1 class="font-bold text-5xl">{{title}}</h1>
-        <p class="text-center text-base leading-6 font-medium text-gray-500">
-            <time> {{ date | readableDate }}
-                by
-                <a>{{ author }}</a>
-
-            </time>
-        </p>
-
-    </div>
-    <article class="prose lg:prose-xl my-4 mx-auto">
-        {{ content | safe }}</article>
-
-</div>
+<section class="max-w-7xl mx-auto mt-6">
+    <article class="px-10 py-8 bg-white border-4 border-text rounded-tl-3xl rounded-tr-4xl rounded-bl-4xl rounded-br-3xl">
+        <div class="flex items-center">
+            {% if featured_image %}
+                <div class="md:w-1/2">
+                    <img src="{{ featured_image }}" alt="Featured Image for {{ title }}" class="border-4 border-text w-full h-auto mb-4 lg:mb-0 lg:mr-8">
+                </div>
+            {% endif %}
+            <div class="md:w-1/2">
+                <h1 class="font-bold text-5xl">{{title}}</h1>
+                <p class="text-center text-base leading-6 font-medium text-gray-500">
+                    <time> {{ date | readableDate }}
+                        by
+                        <a>{{ author }}</a>
+                    </time>
+                </p>
+            </div>
+        </div>
+        <div class="max-w-7xl prose columns-2 my-4 mx-auto">
+            {{ content | safe }}
+        </div>
+    </article>
+</section>

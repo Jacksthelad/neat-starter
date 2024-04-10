@@ -8,30 +8,30 @@ tags: page
 {% if postslist.length > 0 %}
     {% set latest_post = postslist[0] %}
     <section class="mt-15 max-w-7xl mx-auto mb-12">
-        <div class="flex flex-wrap lg:flex-nowrap">
-            {% if latest_post.data.featured_image %}
-                <div class="flex-shrink-0">
-                    <img src="{{ latest_post.data.featured_image | url }}" alt="{{ latest_post.data.title }}" class="border-4 border-text w-full lg:w-1/2 h-auto mb-4 lg:mb-0 lg:mr-8">
+        <a href="{{ latest_post.url | url }}" class="group">
+            <article class="flex flex-col md:flex-row bg-white hover:bg-primary px-10 py-8 border-4 border-text rounded-tl-3xl rounded-tr-4xl rounded-bl-4xl rounded-br-3xl transform transition-all duration-50 ease-in-out group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:shadow-3xl">
+                {% if latest_post.data.featured_image %}
+                    <div class="md:w-1/2">
+                        <img src="{{ latest_post.data.featured_image | url }}" alt="{{ latest_post.data.title }}" class="border-4 border-text w-full h-auto mb-4 lg:mb-0 lg:mr-8">
+                    </div>
+                {% endif %}
+                <div class="md:px-10 md:w-1/2">
+                        <h2 class="font-bold text-5xl text-text mb-2">
+                            {{ latest_post.data.title | default('Untitled') }}
+                        </h2>
+                        {% if latest_post.data.description %}
+                            <p class="text-lg text-text mb-3">
+                                {{ latest_post.data.description }}
+                            </p>
+                        {% endif %}
+                        <time>
+                            <h5 class="text-text">
+                                by {{ latest_post.data.author }}
+                            </h5>
+                        </time>
                 </div>
-            {% endif %}
-            <div class="flex-grow">
-                <a href="{{ latest_post.url | url }}">
-                    <h2 class="font-bold text-5xl text-text mb-2">
-                        {{ latest_post.data.title | default('Untitled') }}
-                    </h2>
-                    {% if latest_post.data.description %}
-                        <p class="text-lg text-text mb-3">
-                            {{ latest_post.data.description }}
-                        </p>
-                    {% endif %}
-                    <time>
-                        <h5 class="text-text">
-                            by {{ latest_post.data.author }}
-                        </h5>
-                    </time>
-                </a>
-            </div>
-        </div>
+            </article>
+        </a>
     </section>
 {% endif %}
 
@@ -39,11 +39,14 @@ tags: page
     <div class="grid grid-cols-1 sm:grid-cols-2 xxl:grid-cols-3 gap-6">
         {% for post in postslist %}
             {% if post.url != latest_post.url %}
-                <article class="bg-white px-10 py-8 border-4 border-text rounded-tl-3xl rounded-tr-4xl rounded-bl-4xl rounded-br-3xl">
-                <a href="{{ post.url | url }}">
+            <a href="{{ post.url | url }}" class="group">
+                <article class="bg-white group-hover:bg-primary px-10 py-8 border-4 border-text rounded-tl-3xl rounded-tr-4xl rounded-bl-4xl rounded-br-3xl transform transition-all duration-50 ease-in-out group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:shadow-3xl">
                     {% if post.data.featured_image %}
-                        <img src="{{ post.data.featured_image | url }}" alt="{{ post.data.title }}" class="border-4 border-text w-full h-auto mb-4">
+                        <div>
+                            <img src="{{ post.data.featured_image | url }}" alt="{{ post.data.title }}" class="border-4 border-text w-full h-auto mb-4">
+                        </div>
                     {% endif %}
+                    <div>
                         <h2 class="font-bold text-5xl text-text mb-2">
                             {% if post.data.title %}
                                 {{ post.data.title }}
@@ -51,19 +54,20 @@ tags: page
                                 Untitled
                             {% endif %}
                     </h2>
-                    {% if post.data.description %}
-                        <p class="text-lg text-text mb-3">
-                            {{ post.data.description }}
-                        </p>
-                    {% endif %}
-                
-                    <time>
-                        <h5 class="text-text">
-                            by {{ post.data.author }}
-                        </h5>
-                    </time>
-                </a>
+                        {% if post.data.description %}
+                            <p class="text-lg text-text mb-3">
+                                {{ post.data.description }}
+                            </p>
+                        {% endif %}
+                    
+                        <time>
+                            <h5 class="text-text">
+                                by {{ post.data.author }}
+                            </h5>
+                        </time>
+                    </div>
                 </article>
+            </a>
             {% endif %}
         {% endfor %}
     </div>

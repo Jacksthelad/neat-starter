@@ -1,5 +1,5 @@
-<header class="bg-background sm:border-b-4 border-none sm:border-text sm:border-solid sm:mb-32 flex flex-col items-center sm:flex-row justify-between relative">
-    <nav class="w-full sm:w-5/12 flex justify-around text-lg font-bold drop-shadow-strong border-b-4 sm:border-none border-text border-solid">
+<header class="bg-background sm:border-b-4 border-none sm:border-text sm:border-solid sm:mb-32 flex items-start flex-row justify-between relative">
+    <nav class="w-full sm:w-5/12 order-last sm:order-first flex justify-around text-lg font-bold drop-shadow-strong border-b-4 sm:border-none border-text border-solid">
         {% if navigation.items %}
             {% for item in navigation.items %}
                 <a href="{{ item.url }}"
@@ -16,5 +16,5 @@
     </div>
     
     <!-- Placeholder for future content or balance -->
-    <div class="w-5/12"></div>
+    <div class="hidden sm:block w-5/12"></div>
 </header>
