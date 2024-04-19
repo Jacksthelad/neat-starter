@@ -3,46 +3,46 @@ layout: default
 prism: true
 ---
 
-<section class="max-w-7xl mx-auto mt-6">
-    <article class="px-10 py-8 bg-white border-4 border-text rounded-tl-3xl rounded-tr-4xl rounded-bl-4xl rounded-br-3xl">
-        <div class="flex flex-col items-center">
-            {% if featured_image %}
-                <div class="max-w-5xl">
-                    <img src="{{ featured_image }}" alt="Featured Image for {{ title }}" class="border-4 border-text w-full h-auto mb-4 lg:mb-0 lg:mr-8">
-                </div>
-            {% endif %}
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    {% if featured_image %}
-                    <div class="swiper-slide">
-                        <img src="{{ featured_image }}" alt="Featured Image for {{ title }}" class="w-full h-auto">
-                    </div>
-                    {% endif %}
-                    {% if gallery_images %}
-                        {% for image in gallery_images %}
-                        <div class="swiper-slide">
-                            <img src="{{ image.image }}" alt="Gallery Image" class="w-full h-auto">
+<div class="mt-6 px-6">
+    <section class="max-w-7xl mx-auto mt-6">
+        <article class="px-6 sm:px-10 py-6 sm:py-8 bg-white border-4 border-text rounded-tl-3xl rounded-tr-4xl rounded-bl-4xl rounded-br-3xl">
+            <div class="flex flex-col items-center">
+                <!-- Swiper -->
+                {% if featured_image %}
+                    <div class="w-full flex items-center">
+                        <div class="hidden sm:flex swiper-button-prev border-4 border-text rounded-md bg-white px-1 py-2 mr-2"></div>
+                        <div class="w-full h-full border-4 border-text swiper mySwiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="{{ featured_image }}" alt="Featured Image for {{ title }}" class="w-full h-auto">
+                                </div>
+                                {% if gallery_images %}
+                                    {% for image in gallery_images %}
+                                    <div class="swiper-slide">
+                                        <img src="{{ image.image }}" alt="Gallery Image" class="w-full h-full">
+                                    </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                            <!-- Pagination and navigation buttons only if there are images -->
+                            <div class="swiper-pagination"></div>
                         </div>
-                        {% endfor %}
-                        <!-- Pagination and navigation buttons only if there are images -->
-                        <div class="swiper-pagination"></div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-                    {% endif %}
+                        <div class="hidden sm:flex swiper-button-next border-4 border-text rounded-md bg-white px-1 py-2 ml-2"></div>
+                    </div>
+                {% endif %}
+                <div class="max-w-5xl mx-auto my-6">
+                    <h1 class="text-text font-bold text-6xl">{{title}}</h1>
+                    <p class="text-center text-base leading-6 font-medium text-gray-500">
+                        <time> {{ date | readableDate }}
+                            by
+                            <a>{{ author }}</a>
+                        </time>
+                    </p>
                 </div>
             </div>
-            <div class="max-w-5xl mx-auto my-6">
-                <h1 class="text-text font-bold text-6xl">{{title}}</h1>
-                <p class="text-center text-base leading-6 font-medium text-gray-500">
-                    <time> {{ date | readableDate }}
-                        by
-                        <a>{{ author }}</a>
-                    </time>
-                </p>
+            <div class="max-w-7xl text-text prose md:columns-2 my-4 mx-auto">
+                {{ content | safe }}
             </div>
-        </div>
-        <div class="max-w-7xl text-text prose md:columns-2 my-4 mx-auto">
-            {{ content | safe }}
-        </div>
-    </article>
-</section>
+        </article>
+    </section>
+</div>

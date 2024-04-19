@@ -18,3 +18,24 @@ body :not(pre) > code[class*="language-"],
 body pre[class*="language-"] {
   @apply bg-gray-800;
 }
+
+.swiper-button-prev,
+.swiper-button-next {
+  position: relative!important;
+  left: initial!important;
+  right: initial!important;
+  color: #FE3C07!important;
+  background-color: #EEDBCC!important;
+  height: initial!important;
+  width: initial!important;
+}
+
+.swiper-pagination-bullet {
+  background: #EEDBCC!important;
+  opacity: 1!important;
+  border: 1px solid #362420!important;
+}
+
+.swiper-pagination-bullet-active {
+  background: #FE3C07!important;
+}
