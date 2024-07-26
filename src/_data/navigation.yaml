@@ -1,7 +1,5 @@
 ---
 items:
-  - text: Blog
-    url: "/blog"
   - text: About
     url: "/about"
   - text: Contact
