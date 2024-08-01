@@ -2,6 +2,29 @@ const yaml = require("js-yaml");
 const { DateTime } = require("luxon");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const htmlmin = require("html-minifier");
+const Image = require("@11ty/eleventy-img");
+const path = require('path');
+
+async function imageShortcode(src, alt, sizes) {
+  // Resolve the image path relative to the project root
+  const fullSrc = path.join('./src/static/img', path.basename(src));
+
+  let metadata = await Image(fullSrc, {
+    widths: [300, 600, 900, 1200, 1800], // Add more widths for higher resolution
+    formats: ["avif", "webp", "jpeg"],
+    urlPath: "/static/img/",
+    outputDir: "./_site/static/img/",
+  });
+
+  let imageAttributes = {
+    alt,
+    sizes,
+    loading: "lazy",
+    decoding: "async",
+  };
+
+  return Image.generateHTML(metadata, imageAttributes);
+}
 
 module.exports = function (eleventyConfig) {
   // Disable automatic use of your .gitignore
@@ -10,7 +33,7 @@ module.exports = function (eleventyConfig) {
   // Merge data instead of overriding
   eleventyConfig.setDataDeepMerge(true);
 
-  // human readable date
+  // Human readable date
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(
       "dd LLL yyyy"
@@ -35,7 +58,7 @@ module.exports = function (eleventyConfig) {
   // Copy Image Folder to /_site
   eleventyConfig.addPassthroughCopy("./src/static/img");
 
-  // Copy favicon to route of /_site
+  // Copy favicon to root of /_site
   eleventyConfig.addPassthroughCopy("./src/favicon.ico");
 
   eleventyConfig.addPassthroughCopy("./src/assets/js");
@@ -56,6 +79,11 @@ module.exports = function (eleventyConfig) {
 
     return content;
   });
+
+  // Register the image shortcode
+  eleventyConfig.addNunjucksAsyncShortcode("image", imageShortcode);
+  eleventyConfig.addLiquidShortcode("image", imageShortcode);
+  eleventyConfig.addJavaScriptFunction("image", imageShortcode);
 
   // Let Eleventy transform HTML files as nunjucks
   // So that we can use .html instead of .njk

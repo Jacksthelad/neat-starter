@@ -14,12 +14,12 @@ prism: true
                         <div class="w-full h-full border-4 border-text swiper mySwiper">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <img src="{{ featured_image }}" alt="Featured Image for {{ title }}" class="w-full h-auto">
+                                    {% image featured_image, "Featured Image for " + title, "(max-width: 600px) 100vw, (min-width: 600px) 50vw, (min-width: 1200px) 33vw" %}
                                 </div>
                                 {% if gallery_images %}
                                     {% for image in gallery_images %}
                                     <div class="swiper-slide">
-                                        <img src="{{ image.image }}" alt="Gallery Image" class="w-full h-full">
+                                        {% image image.image, "Gallery Image", "(max-width: 600px) 100vw, (min-width: 600px) 50vw, (min-width: 1200px) 33vw" %}
                                     </div>
                                     {% endfor %}
                                 {% endif %}

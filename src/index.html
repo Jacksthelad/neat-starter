@@ -12,23 +12,23 @@ path: home
             <article class="flex flex-col md:flex-row bg-white hover:bg-primary px-10 py-8 border-4 border-text rounded-tl-3xl rounded-tr-4xl rounded-bl-4xl rounded-br-3xl transform transition-all duration-50 ease-in-out group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:shadow-3xl">
                 {% if latest_post.data.featured_image %}
                     <div class="md:w-1/2">
-                        <img src="{{ latest_post.data.featured_image | url }}" alt="{{ latest_post.data.title }}" class="border-4 border-text w-full h-auto mb-4 lg:mb-0 lg:mr-8">
+                        {% image latest_post.data.featured_image, latest_post.data.title, "(max-width: 600px) 100vw, (min-width: 600px) 50vw, (min-width: 1200px) 33vw" %}
                     </div>
                 {% endif %}
                 <div class="md:px-10 md:w-1/2">
-                        <h2 class="font-bold text-5xl text-text mb-2">
-                            {{ latest_post.data.title | default('Untitled') }}
-                        </h2>
-                        {% if latest_post.data.description %}
-                            <p class="text-lg text-text mb-3">
-                                {{ latest_post.data.description }}
-                            </p>
-                        {% endif %}
-                        <time>
-                            <h5 class="text-text">
-                                by {{ latest_post.data.author }}
-                            </h5>
-                        </time>
+                    <h2 class="font-bold text-5xl text-text mb-2">
+                        {{ latest_post.data.title | default('Untitled') }}
+                    </h2>
+                    {% if latest_post.data.description %}
+                        <p class="text-lg text-text mb-3">
+                            {{ latest_post.data.description }}
+                        </p>
+                    {% endif %}
+                    <time>
+                        <h5 class="text-text">
+                            by {{ latest_post.data.author }}
+                        </h5>
+                    </time>
                 </div>
             </article>
         </a>
@@ -43,7 +43,7 @@ path: home
                 <article class="bg-white group-hover:bg-primary px-10 py-8 border-4 border-text rounded-tl-3xl rounded-tr-4xl rounded-bl-4xl rounded-br-3xl transform transition-all duration-50 ease-in-out group-hover:-translate-x-1 group-hover:-translate-y-1 group-hover:shadow-3xl">
                     {% if post.data.featured_image %}
                         <div>
-                            <img src="{{ post.data.featured_image | url }}" alt="{{ post.data.title }}" class="border-4 border-text w-full h-auto mb-4">
+                            {% image post.data.featured_image, post.data.title, "(max-width: 600px) 100vw, (min-width: 600px) 50vw, (min-width: 1200px) 33vw" %}
                         </div>
                     {% endif %}
                     <div>
@@ -53,13 +53,12 @@ path: home
                             {% else %}
                                 Untitled
                             {% endif %}
-                    </h2>
+                        </h2>
                         {% if post.data.description %}
                             <p class="text-lg text-text mb-3">
                                 {{ post.data.description }}
                             </p>
                         {% endif %}
-                    
                         <time>
                             <h5 class="text-text">
                                 by {{ post.data.author }}
