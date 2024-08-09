@@ -6,14 +6,15 @@ const Image = require("@11ty/eleventy-img");
 const path = require('path');
 
 async function imageShortcode(src, alt, sizes) {
-  // Resolve the image path relative to the project root
-  const fullSrc = path.join('./src/static/img', path.basename(src));
+  // You might want to adjust this part to dynamically choose between 'blog' or 'permanent'
+  const baseDir = src.includes('/blog/') ? 'blog' : 'permanent';
+  const fullSrc = path.join(`./src/assets/images/${baseDir}`, path.basename(src));
 
   let metadata = await Image(fullSrc, {
-    widths: [300, 600, 900, 1200, 1800], // Add more widths for higher resolution
+    widths: [300, 600, 900, 1200, 1800], // You might want to adjust these widths based on your needs
     formats: ["avif", "webp", "jpeg"],
-    urlPath: "/static/img/",
-    outputDir: "./_site/static/img/",
+    urlPath: `/assets/images/${baseDir}/`,
+    outputDir: `./_site/assets/images/${baseDir}/`,
   });
 
   let imageAttributes = {
@@ -54,9 +55,6 @@ module.exports = function (eleventyConfig) {
     "./node_modules/prismjs/themes/prism-tomorrow.css":
       "./static/css/prism-tomorrow.css",
   });
-
-  // Copy Image Folder to /_site
-  eleventyConfig.addPassthroughCopy("./src/static/img");
 
   // Copy favicon to root of /_site
   eleventyConfig.addPassthroughCopy("./src/favicon.ico");

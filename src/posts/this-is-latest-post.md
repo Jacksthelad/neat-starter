@@ -6,10 +6,10 @@ description: Bring to the table win-win survival strategies to ensure proactive
   solution.
 author: Jack
 date: 2020-09-23T15:13:13.021Z
-featured_image: /static/img/2f7e46c7-a330-4121-bdba-8f970d74b0a6.jpg
+featured_image: /assets/images/blog/2f7e46c7-a330-4121-bdba-8f970d74b0a6.jpg
 gallery_images:
-  - image: /static/img/img_5924.jpg
-  - image: /static/img/img_0708.jpg
+  - image: /assets/images/blog/img_5924.jpg
+  - image: /assets/images/blog/img_0708.jpg
 tags: second-tag
 ---
 

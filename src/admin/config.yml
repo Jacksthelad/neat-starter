@@ -5,8 +5,8 @@ backend:
   ### enable below lines for github integration ###
   # name: github
   # repo: surjithctly/neat-starter
-media_folder: "src/static/img"
-public_folder: "/static/img"
+media_folder: "src/assets/images"  # This is the folder where Netlify CMS will save uploaded images
+public_folder: "/assets/images"    # This is the public path used in your site to access images
 
 # Please run "npx netlify-cms-proxy-server" for local backend
 local_backend: true
@@ -16,8 +16,8 @@ collections:
     name: "blog"
     folder: "src/posts"
     create: true
-    editor:
-      preview: false
+    media_folder: "/assets/images/blog"  # Relative to the global media_folder
+    public_folder: "/assets/images/blog" # Public path for blog images
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
