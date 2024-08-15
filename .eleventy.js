@@ -6,15 +6,13 @@ const Image = require("@11ty/eleventy-img");
 const path = require('path');
 
 async function imageShortcode(src, alt, sizes) {
-  // You might want to adjust this part to dynamically choose between 'blog' or 'permanent'
-  const baseDir = src.includes('/blog/') ? 'blog' : 'permanent';
-  const fullSrc = path.join(`./src/assets/images/${baseDir}`, path.basename(src));
+  const fullSrc = path.join(`./src/assets/images/blog`, path.basename(src));
 
   let metadata = await Image(fullSrc, {
-    widths: [300, 600, 900, 1200, 1800], // You might want to adjust these widths based on your needs
+    widths: [300, 600, 900, 1200, 1800], 
     formats: ["avif", "webp", "jpeg"],
-    urlPath: `/assets/images/${baseDir}/`,
-    outputDir: `./_site/assets/images/${baseDir}/`,
+    urlPath: `/assets/images/blog/`,
+    outputDir: `./_site/assets/images/blog/`,
   });
 
   let imageAttributes = {

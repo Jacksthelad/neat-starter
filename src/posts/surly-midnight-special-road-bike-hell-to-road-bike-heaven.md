@@ -7,7 +7,6 @@ author: Jack
 date: 2024-08-14T16:28:29.054Z
 featured_image: /assets/images/blog/dsc03570-1-.jpeg
 gallery_images:
-  - image: /assets/images/blog/dsc03570-1-.jpeg
   - image: /assets/images/blog/dsc03646-1-.jpeg
   - image: /assets/images/blog/dsc03672-1-.jpeg
   - image: /assets/images/blog/dsc03554-1-.jpeg

@@ -16,8 +16,8 @@ collections:
     name: "blog"
     folder: "src/posts"
     create: true
-    media_folder: "/assets/images/blog"  # Relative to the global media_folder
-    public_folder: "/assets/images/blog" # Public path for blog images
+    media_folder: "src/assets/images/blog"  # Relative to the global media_folder
+    public_folder: "/assets/images/blog"    # Public path for blog images
     fields:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
