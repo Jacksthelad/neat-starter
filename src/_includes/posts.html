@@ -9,9 +9,10 @@ prism: true
             <div class="flex flex-col items-center">
                 <!-- Swiper -->
                 {% if featured_image %}
-                    <div class="w-full flex items-center">
-                        <div class="hidden sm:flex swiper-button-prev border-4 border-text rounded-md bg-white px-1 py-2 mr-2"></div>
-                        <div class="w-full h-full border-4 border-text swiper mySwiper">
+                <div class="w-full flex items-center">
+                    <div class="hidden sm:flex swiper-button-prev border-2 border-text rounded-md bg-secondary px-2 py-2 mr-2"></div>
+                    
+                        <div class="w-full h-full border-2 border-text sm:rounded-4xl swiper mySwiper">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     {% image featured_image, "Featured Image for " + title, "(max-width: 600px) 100vw, (min-width: 600px) 50vw, (min-width: 1200px) 33vw" %}
@@ -24,11 +25,13 @@ prism: true
                                     {% endfor %}
                                 {% endif %}
                             </div>
-                            <!-- Pagination and navigation buttons only if there are images -->
-                            <div class="swiper-pagination"></div>
                         </div>
-                        <div class="hidden sm:flex swiper-button-next border-4 border-text rounded-md bg-white px-1 py-2 ml-2"></div>
+                        
+                        <div class="hidden sm:flex swiper-button-next border-2 border-text rounded-md bg-secondary px-2 py-2 ml-2"></div>
                     </div>
+                    
+                    <!-- Move the pagination outside -->
+                    <div class="swiper-pagination"></div>                
                 {% endif %}
                 <div class="max-w-5xl mx-auto my-6">
                     <h1 class="text-text font-bold text-2xl sm:text-4xl md:text-5xl lg:text-6xl">{{title}}</h1>

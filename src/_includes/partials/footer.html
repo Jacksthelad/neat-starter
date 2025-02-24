@@ -5,10 +5,14 @@
   
     <nav class="mb-6 font-bold">
       {% for item in collections.page %}
-      <a href="{{ item.url }}"
-         class="{% if item.url == page.url %}{% else %}{% endif %} border-2 border-text rounded-md bg-white px-2 py-1 mx-2 transform transition-all duration-50 ease-in-out hover:-translate-x-1 hover:-translate-y-1 hover:shadow-3xl"
-         aria-current="{% if item.url == page.url %}page{% endif %}">
-        {{ item.data.title }}</a>
+        <a href="{{ item.url }}"
+            class="{% if item.url == page.url %}{% else %}{% endif %} 
+                  border-2 border-text rounded-md bg-white px-2 py-1 mx-2 
+                  transform transition-all duration-300 ease-in-out 
+                  hover:-translate-y-1 hover:-translate-x-1 hover:shadow-3xl inline-block"
+            aria-current="{% if item.url == page.url %}page{% endif %}">
+          {{ item.data.title }}
+        </a>
       {% endfor %}
     </nav>
     
@@ -23,7 +27,7 @@
     <div class="bottom-0 text-center w-full pt-4">
         <small class="text-text">Copyright ©
             {{settings.name}}
-            2024. Created by
+            2025. Created by
             <a href="{{settings.url}}" target="_blank" class="underline">{{settings.author}}</a>
         </small>
     </div>

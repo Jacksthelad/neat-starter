@@ -6,13 +6,17 @@ const Image = require("@11ty/eleventy-img");
 const path = require('path');
 
 async function imageShortcode(src, alt, sizes) {
-  const fullSrc = path.join(`./src/assets/images/blog`, path.basename(src));
+  if (!alt) {
+    throw new Error(`Missing \`alt\` text for image: ${src}`);
+  }
+
+  const fullSrc = path.join("./src/assets/images", src);
 
   let metadata = await Image(fullSrc, {
     widths: [300, 600, 900, 1200, 1800], 
     formats: ["avif", "webp", "jpeg"],
-    urlPath: `/assets/images/blog/`,
-    outputDir: `./_site/assets/images/blog/`,
+    urlPath: `/assets/images/`,
+    outputDir: `./_site/assets/images/`,
   });
 
   let imageAttributes = {
