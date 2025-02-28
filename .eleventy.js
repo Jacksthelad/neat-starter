@@ -10,7 +10,7 @@ async function imageShortcode(src, alt, sizes) {
     throw new Error(`Missing \`alt\` text for image: ${src}`);
   }
 
-  const fullSrc = path.join("./src/assets/images", src);
+  const fullSrc = path.join("./src/assets/images", src.replace(/^assets\/images\//, ""));
 
   let metadata = await Image(fullSrc, {
     widths: [300, 600, 900, 1200, 1800], 

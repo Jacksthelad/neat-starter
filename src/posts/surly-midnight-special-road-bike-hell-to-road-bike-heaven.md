@@ -5,15 +5,15 @@ description: Three years ago I made a video where I was going on about how much
   the thing.
 author: Jack
 date: 2024-08-14T16:28:29.054Z
-featured_image: /assets/images/blog/dsc03570-1-.jpeg
+featured_image: /blog/dsc03570-1-.jpeg
 gallery_images:
-  - image: /assets/images/blog/dsc03646-1-.jpeg
-  - image: /assets/images/blog/dsc03672-1-.jpeg
-  - image: /assets/images/blog/dsc03554-1-.jpeg
-  - image: /assets/images/blog/dsc03538-1-.jpeg
-  - image: /assets/images/blog/dsc03675-1-.jpeg
-  - image: /assets/images/blog/dsc03658-1-.jpeg
-  - image: /assets/images/blog/dsc03567-1-.jpeg
+  - image: /blog/dsc03646-1-.jpeg
+  - image: /blog/dsc03672-1-.jpeg
+  - image: /blog/dsc03554-1-.jpeg
+  - image: /blog/dsc03538-1-.jpeg
+  - image: /blog/dsc03675-1-.jpeg
+  - image: /blog/dsc03658-1-.jpeg
+  - image: /blog/dsc03567-1-.jpeg
 tags:
   - Tags
 ---
