@@ -4,6 +4,7 @@ const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const htmlmin = require("html-minifier");
 const Image = require("@11ty/eleventy-img");
 const path = require('path');
+const pluginSitemap = require("@quasibit/eleventy-plugin-sitemap");
 
 async function imageShortcode(src, alt, sizes) {
   if (!alt) {
@@ -38,45 +39,36 @@ module.exports = function (eleventyConfig) {
 
   // Human readable date
   eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(
-      "dd LLL yyyy"
-    );
+    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("dd LLL yyyy");
   });
 
   // Syntax Highlighting for Code blocks
   eleventyConfig.addPlugin(syntaxHighlight);
 
-  // To Support .yaml Extension in _data
-  // You may remove this if you can use JSON
+  // Support YAML files in _data
   eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
 
-  // Copy Static Files to /_Site
+  // Copy Static Files
   eleventyConfig.addPassthroughCopy({
     "./src/admin/config.yml": "./admin/config.yml",
     "./node_modules/alpinejs/dist/cdn.min.js": "./static/js/alpine.js",
-    "./node_modules/prismjs/themes/prism-tomorrow.css":
-      "./static/css/prism-tomorrow.css",
+    "./node_modules/prismjs/themes/prism-tomorrow.css": "./static/css/prism-tomorrow.css",
   });
 
-  // Copy favicon to root of /_site
+  // Copy favicon and assets
   eleventyConfig.addPassthroughCopy("./src/favicon.ico");
-
   eleventyConfig.addPassthroughCopy("./src/assets/js");
-
   eleventyConfig.addPassthroughCopy("./src/assets/images");
 
   // Minify HTML
   eleventyConfig.addTransform("htmlmin", function (content, outputPath) {
-    // Eleventy 1.0+: use this.inputPath and this.outputPath instead
-    if (outputPath.endsWith(".html")) {
-      let minified = htmlmin.minify(content, {
+    if (outputPath && outputPath.endsWith(".html")) {
+      return htmlmin.minify(content, {
         useShortDoctype: true,
         removeComments: true,
         collapseWhitespace: true,
       });
-      return minified;
     }
-
     return content;
   });
 
@@ -85,8 +77,14 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addLiquidShortcode("image", imageShortcode);
   eleventyConfig.addJavaScriptFunction("image", imageShortcode);
 
-  // Let Eleventy transform HTML files as nunjucks
-  // So that we can use .html instead of .njk
+  // Add Sitemap Plugin
+  eleventyConfig.addPlugin(pluginSitemap, {
+    sitemap: {
+      hostname: "https://theslowworms.com",
+    },
+  });  
+
+  // Return Configuration
   return {
     dir: {
       input: "src",
