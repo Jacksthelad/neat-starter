@@ -4,7 +4,23 @@ description: From chaos to cult classic — the wild origin story and custom bui
   of the On-One Hello Dave.
 author: Jack
 date: 2025-10-21T22:48:21.282Z
-featured_image: /assets/images/blog/dsc03614.jpeg
+featured_image: blog/hello-dave/featured.jpeg
+gallery_images:
+  - image: blog/hello-dave/1.jpeg
+  - image: blog/hello-dave/2.jpeg
+  - image: blog/hello-dave/3.jpeg
+  - image: blog/hello-dave/4.jpeg
+  - image: blog/hello-dave/5.jpeg
+  - image: blog/hello-dave/6.jpeg
+  - image: blog/hello-dave/7.jpeg
+  - image: blog/hello-dave/8.jpeg
+  - image: blog/hello-dave/9.jpeg
+  - image: blog/hello-dave/10.jpeg
+  - image: blog/hello-dave/11.jpeg
+  - image: blog/hello-dave/12.jpeg
+  - image: blog/hello-dave/13.jpeg
+  - image: blog/hello-dave/14.jpeg
+  - image: blog/hello-dave/15.jpeg
 tags:
   - Tags
 ---
