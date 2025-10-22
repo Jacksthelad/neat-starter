@@ -12,7 +12,7 @@ import UpgradeHelper from "@11ty/eleventy-upgrade-help";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-async function imageShortcode(src, alt, sizes) {
+async function imageShortcode(src, alt, sizes, opts = {}) {
   if (!alt) throw new Error(`Missing \`alt\` for image: ${src}`);
 
   const fullSrc = path.join(
@@ -28,12 +28,16 @@ async function imageShortcode(src, alt, sizes) {
     outputDir: "./_site/assets/images/",
   });
 
-  return Image.generateHTML(metadata, {
+  const attributes = {
     alt,
     sizes,
     loading: "lazy",
     decoding: "async",
-  });
+    // allow passing any HTML attributes like class, fetchpriority, etc.
+    ...opts,
+  };
+
+  return Image.generateHTML(metadata, attributes);
 }
 
 export default function(eleventyConfig) {
